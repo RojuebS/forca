@@ -43,6 +43,7 @@ const Forca = () => {
             <div className="gallows"/>
             <div className="topGallows"/>
             <div className={`${setClassCharacter()} character`}>
+              <div className="dead" />
               <div className="head"/>
               <div className="body">
                 <div className="legs"/>
@@ -59,7 +60,7 @@ const Forca = () => {
                     </li>
                 )
               }) : (
-                  <div>{ stateCurrentWords }</div>
+                  <div>Palavra correta: { stateCurrentWords }</div>
               )}
             </ul>
           </div>

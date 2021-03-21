@@ -141,6 +141,44 @@
         flex-wrap: wrap;
         justify-content: center;
 
+        .dead {
+          width: 120px;
+          height: 120px;
+          position: absolute;
+          top: -15px;
+          z-index: 10;
+          left: 0;
+          display: none;
+
+          &:after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 100%;
+            background: red;
+            right: 16px;
+            transform: rotate(-45deg);
+          }
+
+          &:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 100%;
+            background: red;
+            right: 16px;
+            transform: rotate(45deg);
+          }
+        }
+
+        &.dead {
+          .dead {
+            display: block;
+          }
+        }
+
         .head {
           width: 90px;
           height: 90px;
@@ -212,7 +250,11 @@
           }
         }
 
-        &.show-head { .head { display: block; } }
+        &.show-head {
+          .head {
+            display: block;
+          }
+        }
 
         &.show-body.arm {
           .body {
