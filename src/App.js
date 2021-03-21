@@ -8,6 +8,7 @@ const Forca = () => {
   const [stateCurrentWords] = useState(words[Math.floor(Math.random() * 5)])
   const [stateSequence, setStateSequence] = useState([])
   const [stateError, setStateError] = useState(0)
+  const [countLettersCorrects, setCountLettersCorrects ] = useState(0)
 
   const Alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
@@ -22,7 +23,7 @@ const Forca = () => {
   }
 
   const checkError = (bool) => {
-    if (bool) setStateError(stateError + 1)
+    if (bool) { setStateError(stateError + 1) } else { setCountLettersCorrects(countLettersCorrects + 1)}
   }
 
   const setClassCharacter = () => {
@@ -60,9 +61,13 @@ const Forca = () => {
                     </li>
                 )
               }) : (
-                  <div>Palavra correta: { stateCurrentWords }</div>
+                  <li> Palavra correta: { stateCurrentWords }</li>
               )}
             </ul>
+
+            {countLettersCorrects === stateCurrentWords.length - 1 &&
+            <div>Parabéns você ganhou</div>
+            }
           </div>
 
         </div>
