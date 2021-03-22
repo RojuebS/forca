@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./style/forca.scss"
 
 const Forca = () => {
 
-  const words2 = [{tip: "É uma fruta", value: "Abacaxi"}, {tip: "É um Automóvel", value: "Corolla"}, {tip: "Comdo da casa", value: "Cozinha"}]
+  const words = [{tip: "É uma fruta", value: "Abacaxi"}, {tip: "É um Automóvel", value: "Corolla"}, {tip: "Comodo da casa", value: "Cozinha"}]
 
-  const [stateCurrentWords] = useState(words2[Math.floor(Math.random() * 5)])
+  const [stateCurrentWords, setStateCurrentWords] = useState([])
   const [stateSequence, setStateSequence] = useState([])
   const [stateError, setStateError] = useState(0)
   const [countLettersCorrects, setCountLettersCorrects ] = useState(0)
 
   const Alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-  const splitWordsAndList = (words) => words.value.split("")
+  const splitWordsAndList = (words) => words?.value.split("")
 
   const setSequence = (ev, letter) => {
     let newState = [...stateSequence]
@@ -37,6 +37,14 @@ const Forca = () => {
     return _class[stateError] || ""
   }
 
+  useEffect( () => {
+    let a = words[Math.floor(Math.random() * 3)]
+    setStateCurrentWords(a)
+    // eslint-disable-next-line
+  }, [])
+
+  if(stateCurrentWords.length === 0) { return <div />}
+
   const Gibbet = () => {
     return (
         <div className="gibbet">
@@ -54,6 +62,7 @@ const Forca = () => {
           </div>
 
           <div className="wordGibbet">
+            {console.log(stateCurrentWords, "stateCurrentWords")}
             <ul>
               {stateError < 4 ? splitWordsAndList(stateCurrentWords).map((letter, index) => {
                 return (
@@ -75,7 +84,10 @@ const Forca = () => {
     )
   }
 
-  const itsWrong = (letter) => !stateCurrentWords.includes(letter.toLowerCase())
+  const itsWrong = (letter) => {
+    console.log(letter, "letter")
+    // return !stateCurrentWords.includes(letter.toLowerCase())
+  }
 
   return (
       <div id="gallows" className="container">
@@ -89,7 +101,7 @@ const Forca = () => {
             })}
           </ul>
 
-          <h1 className="tip">{stateCurrentWords.tip}</h1>
+          <h1 className="tip">{stateCurrentWords?.tip}</h1>
 
         </div>
 
