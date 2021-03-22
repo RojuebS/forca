@@ -15,6 +15,7 @@ const Forca = () => {
   const splitWordsAndList = (words) => words?.value.split("")
 
   const setSequence = (ev, letter) => {
+    console.log(letter, ">>>>")
     let newState = [...stateSequence]
     newState.push(letter.toLowerCase())
     ev.target.closest("li").classList.add(!itsWrong(letter.toLowerCase()) ? "active" : "error")
@@ -23,6 +24,7 @@ const Forca = () => {
   }
 
   const checkError = (bool) => {
+    console.log(bool, ">>>>")
     if (bool) { setStateError(stateError + 1) } else { setCountLettersCorrects(countLettersCorrects + 1)}
   }
 
@@ -62,7 +64,6 @@ const Forca = () => {
           </div>
 
           <div className="wordGibbet">
-            {console.log(stateCurrentWords, "stateCurrentWords")}
             <ul>
               {stateError < 4 ? splitWordsAndList(stateCurrentWords).map((letter, index) => {
                 return (
@@ -71,7 +72,7 @@ const Forca = () => {
                     </li>
                 )
               }) : (
-                  <li> Palavra correta: { stateCurrentWords }</li>
+                  <li> Palavra correta: { stateCurrentWords.value }</li>
               )}
             </ul>
 
@@ -84,10 +85,7 @@ const Forca = () => {
     )
   }
 
-  const itsWrong = (letter) => {
-    console.log(letter, "letter")
-    // return !stateCurrentWords.includes(letter.toLowerCase())
-  }
+  const itsWrong = (letter) => !stateCurrentWords.value.includes(letter.toLowerCase())
 
   return (
       <div id="gallows" className="container">
