@@ -3,16 +3,16 @@ import "./style/forca.scss"
 
 const Forca = () => {
 
-  const words = ["abacaxi", "morango", "carro", "cozinha", "banheiro"]
+  const words2 = [{tip: "É uma fruta", value: "Abacaxi"}, {tip: "É um Automóvel", value: "Corolla"}, {tip: "Comdo da casa", value: "Cozinha"}]
 
-  const [stateCurrentWords] = useState(words[Math.floor(Math.random() * 5)])
+  const [stateCurrentWords] = useState(words2[Math.floor(Math.random() * 5)])
   const [stateSequence, setStateSequence] = useState([])
   const [stateError, setStateError] = useState(0)
   const [countLettersCorrects, setCountLettersCorrects ] = useState(0)
 
   const Alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-  const splitWordsAndList = (words) => words.split("")
+  const splitWordsAndList = (words) => words.value.split("")
 
   const setSequence = (ev, letter) => {
     let newState = [...stateSequence]
@@ -50,6 +50,7 @@ const Forca = () => {
                 <div className="legs"/>
               </div>
             </div>
+
           </div>
 
           <div className="wordGibbet">
@@ -87,6 +88,9 @@ const Forca = () => {
               )
             })}
           </ul>
+
+          <h1 className="tip">{stateCurrentWords.tip}</h1>
+
         </div>
 
         <Gibbet />
